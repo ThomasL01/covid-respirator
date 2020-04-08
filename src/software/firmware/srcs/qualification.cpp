@@ -353,7 +353,7 @@ void setup() {
     DBG_DO(Serial.begin(115200));
     DBG_DO(Serial.println("demarrage"));
 
-    #if HARDWARE_VERSION == 1
+#if HARDWARE_VERSION == 1
     analogButtons.add(btn_pression_crete_plus);
     analogButtons.add(btn_pression_crete_minus);
     analogButtons.add(btn_pression_plateau_plus);
@@ -362,7 +362,7 @@ void setup() {
     analogButtons.add(btn_pep_minus);
     analogButtons.add(btn_cycle_plus);
     analogButtons.add(btn_cycle_minus);
-    #elif HARDWARE_VERSION == 2
+#elif HARDWARE_VERSION == 2
     buttonPeakPressureIncrease.attachClick(onPressionCretePlusClick);
     buttonPeakPressureDecrease.attachClick(onPressionCreteMinusClick);
     buttonPlateauPressureIncrease.attachClick(onPressionPlateauPlusClick);
@@ -371,7 +371,7 @@ void setup() {
     buttonPeepPressureDecrease.attachClick(onPepMinusClick);
     buttonCycleIncrease.attachClick(onCyclePlusClick);
     buttonCycleDecrease.attachClick(onCycleMinusClick);
-    #endif
+#endif
 
     btn_alarm_off.attachClick(onAlarmOffClick);
     btn_start.attachClick(onStartClick);
@@ -434,9 +434,9 @@ void loop() {
         remainingTicks = CYCLE_TICKS;
     }
 
-    #if HARDWARE_VERSION == 1
+#if HARDWARE_VERSION == 1
     analogButtons.check();
-    #elif HARDWARE_VERSION == 2
+#elif HARDWARE_VERSION == 2
     buttonPeakPressureIncrease.tick();
     buttonPeakPressureDecrease.tick();
     buttonPlateauPressureIncrease.tick();
@@ -445,7 +445,7 @@ void loop() {
     buttonPeepPressureDecrease.tick();
     buttonCycleIncrease.tick();
     buttonCycleDecrease.tick();
-    #endif
+#endif
     btn_alarm_off.tick();
     btn_start.tick();
     btn_stop.tick();
