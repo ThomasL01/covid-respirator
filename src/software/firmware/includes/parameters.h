@@ -126,30 +126,6 @@ static const int32_t PID_PATIENT_INTEGRAL_MIN = -500;
 #define PIN_LCD_D7 D12  // PA6
 #endif
 
-#define LED_RED_ACTIVE HIGH
-#define LED_RED_INACTIVE LOW
-#define LED_YELLOW_ACTIVE HIGH
-#define LED_YELLOW_INACTIVE LOW
-#define LED_GREEN_ACTIVE HIGH
-#define LED_GREEN_INACTIVE LOW
-
-#elif HARDWARE_VERSION == 2
-#define PIN_LCD_RS D7  // PA8
-#define PIN_LCD_RW PA14
-#define PIN_LCD_EN D8   // PA9
-#define PIN_LCD_D4 D9   // PC7
-#define PIN_LCD_D5 D10  // PB6
-#define PIN_LCD_D6 D11  // PA7
-#define PIN_LCD_D7 D12  // PA6
-
-#define LED_RED_ACTIVE LOW
-#define LED_RED_INACTIVE HIGH
-#define LED_YELLOW_ACTIVE LOW
-#define LED_YELLOW_INACTIVE HIGH
-#define LED_GREEN_ACTIVE LOW
-#define LED_GREEN_INACTIVE HIGH
-#endif
-
 /// Number of lines
 #define SCREEN_LINE_NUMBER 4
 
@@ -204,11 +180,6 @@ static const int32_t PID_PATIENT_INTEGRAL_MIN = -500;
 ///@{
 
 #if HARDWARE_VERSION == 1
-<<<<<<< HEAD
-#define PIN_PRESSURE_SENSOR A1
-#define PIN_BUZZER D13
-=======
->>>>>>> 629b83a567141305d9c095a618117256a96434ae
 #define PIN_LED_RED PC4
 #define PIN_LED_GREEN PB13
 #define PIN_LED_YELLOW PB14
@@ -253,25 +224,14 @@ static const int32_t PID_PATIENT_INTEGRAL_MIN = -500;
 #define PIN_BATTERY A2
 #elif HARDWARE_VERSION == 2
 #define PIN_PRESSURE_SENSOR A1
-<<<<<<< HEAD
-#define PIN_BUZZER D13  // PA5
-#define PIN_LED_STARTSTOP PC8
-#define PIN_LED_GREEN PB13
-#define PIN_LED_YELLOW PB14
-#define PIN_LED_RED PC4
-#define PIN_ESC_BLOWER D2   // PA10 / TIM1_CH3
-=======
 #define PIN_BUZZER D13     // PA5
 #define PIN_ESC_BLOWER D2  // PA10 / TIM1_CH3
->>>>>>> 629b83a567141305d9c095a618117256a96434ae
 #define TIM_CHANNEL_ESC_BLOWER 3
 #define PIN_TEMP_BLOWER A4  // PC1
 #define PIN_BATTERY A2
 #define PIN_SERIAL_RX PA12
 #define PIN_SERIAL_TX PA11
 #endif
-<<<<<<< HEAD
-=======
 
 ///@}
 
@@ -279,7 +239,6 @@ static const int32_t PID_PATIENT_INTEGRAL_MIN = -500;
  * @name Alarm thresholds
  */
 ///@{
->>>>>>> 629b83a567141305d9c095a618117256a96434ae
 
 #define ALARM_2_CMH2O 20                                           // RCM-SW-2
 #define ALARM_35_CMH2O 350                                         // RCM-SW-1
