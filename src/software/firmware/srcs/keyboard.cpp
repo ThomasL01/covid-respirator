@@ -78,7 +78,7 @@ void onCycleIncrease() { pController.onCycleIncrease(); }
 void onCycleDecrease() { pController.onCycleDecrease(); }
 
 /// Handler of the button to stop alarm
-void onAlarmOff() { Buzzer_Stop(); }
+void onAlarmOff() { alarmController.snooze(); }
 
 /// Handler of the button to start
 void onStart() {}

@@ -25,6 +25,7 @@
 #include <OneButton.h>
 
 // Internal
+#include "../includes/blower.h"
 #include "../includes/debug.h"
 #include "../includes/parameters.h"
 #include "../includes/pression.h"
@@ -495,9 +496,9 @@ void loop() {
     btn_start.tick();
     btn_stop.tick();
 
-    digitalWrite(PIN_LED_RED, LED_RED_INACTIVE);
-    digitalWrite(PIN_LED_YELLOW, LED_YELLOW_INACTIVE);
-    digitalWrite(PIN_LED_GREEN, LED_GREEN_INACTIVE);
+    LedRedInactive();
+    LedYellowInactive();
+    LedGreenInactive();
     Buzzer_Off();
 
     switch (step) {
@@ -558,21 +559,21 @@ void loop() {
     }
     case STEP_LED_RED: {
         UNGREEDY(is_drawn, display("Red LED is ON", "Press start"));
-        digitalWrite(PIN_LED_RED, LED_RED_ACTIVE);
+        LedRedActive();
         break;
     }
     case STEP_LED_YELLOW: {
         UNGREEDY(is_drawn, display("Yellow LED is ON", "Press stop"));
-        digitalWrite(PIN_LED_YELLOW, LED_YELLOW_ACTIVE);
+        LedYellowActive();
         break;
     }
     case STEP_LED_GREEN: {
         UNGREEDY(is_drawn, display("Green LED is ON", "Press start"));
-        digitalWrite(PIN_LED_GREEN, LED_GREEN_ACTIVE);
+        LedGreenActive();
         break;
     }
     case STEP_BUZZER: {
-        UNGREEDY(is_drawn, display("Buzzer is ON", "Press Buzzer OFF"));
+        UNGREEDY(is_drawn, display("Buzzer is ON", "Press Alarm OFF"));
         Buzzer_On();
         break;
     }
@@ -635,10 +636,10 @@ void loop() {
         break;
     }
     case STEP_SERIAL: {
-        UNGREEDY(is_drawn, display("Sending to serial", "Press stop"));
 #if HARDWARE_VERSION == 1
         step++;
 #elif HARDWARE_VERSION == 2
+        UNGREEDY(is_drawn, display("Sending to serial", "Press stop"));
         if (remainingTicks == 0) {
             Serial6.println("[Qualification mode] Testing serial output");
         }
@@ -686,8 +687,8 @@ void loop() {
     }
     }
 
-    if (step == STEP_PRESSURE_EMPTY || step == STEP_PRESSURE_VAL1 || step == STEP_PRESSURE_VAL2
-        || step == STEP_PRESSURE_VAL3) {
+    if ((step == STEP_PRESSURE_EMPTY || step == STEP_PRESSURE_VAL1 || step == STEP_PRESSURE_VAL2
+        || step == STEP_PRESSURE_VAL3) && (remainingTicks % (CYCLE_TICKS / 2) == 0)) {
         char status_msg[SCREEN_LINE_LENGTH + 1];
         snprintf(status_msg, SCREEN_LINE_LENGTH + 1, "Pressure: %d", readPressureSensor(0));
         displayStatus(status_msg, 2);
